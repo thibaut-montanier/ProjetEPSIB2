@@ -6,56 +6,16 @@ using System.Collections.Generic;
 namespace ConsoleApp4 {
     class Program {
 
-
         private static DemandeALutilisateur _DemandeALutilisateur = new DemandeALutilisateur();
-        private static EtudiantsService _EtudiantsService = new EtudiantsService(_DemandeALutilisateur);
-        private static MatieresService _MatieresService = new MatieresService(_DemandeALutilisateur);
+
+
         static void Main(string[] args) {
-            //// présentaiton du fonctionnement du lien entre les objets
-            //Matiere CsharpNiveau1 = new Matiere();
-            //CsharpNiveau1.Code= "C#";
-            //CsharpNiveau1.Nom = "C# Les fondamentaux";
-
-            //Matiere UML = new Matiere();
-            //UML.Code = "UML";
-            //UML.Nom = "UML - le diagramme de classe";
-
-            //List<Matiere> lesMatieres = new List<Matiere>();
-            //lesMatieres.Add(CsharpNiveau1);
-            //lesMatieres.Add(UML);
-
-            //Etudiant p1 = new Etudiant();
-            //p1.Prenom = "Thibaut";
-
-            //p1.Matieres = new List<Matiere>();
-            //p1.Matieres.Add(CsharpNiveau1);
-            //p1.Matieres.Add(UML);
-
-
-            //Etudiant p2 = new Etudiant();
-            //p2.Prenom = "Oulimata";
-            //p2.Matieres = new List<Matiere>();
-
-
-            //List<Etudiant> etudiants = new List<Etudiant>();
-            //etudiants.Add(p1);
-            //etudiants.Add(p2);
-
-
-            //Matiere m = DemandeMatiere(lesMatieres);
-            //if (m!= null)
-            //    p2.Matieres.Add(m);
-            //// ajout de la matière correspondant au code à Oulimata.
-
-
-            //// Modification du nom de la matière => l'affichage sera impacté pour tous les édutiants qui suivent cette matière
-            //CsharpNiveau1.Nom = "C# Niveau 1";
-            ////********** - Afficher la liste des étudiants et les matières qu'ils suivent ***************** /
-            //_EtudiantsService.AfficheEtudiants(etudiants);
-
+                SalleService _SalleService = new SalleService(_DemandeALutilisateur);
+                MatieresService _MatieresService = new MatieresService(_DemandeALutilisateur, _SalleService);
+                EtudiantsService _EtudiantsService = new EtudiantsService(_DemandeALutilisateur, _MatieresService);
 
             // ancienne partie du code => à conserver pour exercices
-
+            var l = new List<Toto>();
             Console.WriteLine("Hello World!");
             // déclaration d'une liste de personne
             
@@ -70,6 +30,11 @@ namespace ConsoleApp4 {
                     // exercice : permettre de créer une matière
                     _MatieresService.CreerMatiere();
                 } else if (choixUtilisateur == "4") {
+                   
+                } else if (choixUtilisateur == "5") {
+                    _SalleService.CreateSalle();
+                } else if (choixUtilisateur == "6") {
+                    _SalleService.CreateFakeData();
                     // exercice : afficher la liste des matières
                 } else if (choixUtilisateur == "Q") {
                     break;
@@ -99,10 +64,18 @@ namespace ConsoleApp4 {
             Console.WriteLine("1. Créer une personne");
             Console.WriteLine("2. Afficher la liste des personnes");
             Console.WriteLine("3. Créer une matière");
+            Console.WriteLine("4. Afficher les matières");
+            Console.WriteLine("5. Créer une salle");
             Console.WriteLine("Q. Quitter");
             string choixUtilisateur = _DemandeALutilisateur.DemandeString("");
             return choixUtilisateur;
         }
 
+    }
+
+    public class Toto {
+        public string description { get; set; } = "sdfqdfsqkj qsldkj qkjf mqsdjkf mfkjs sfk fsdqkj fskjh fdlkjfs lkj slkjh sdl";
+        public string description2 { get; set; } = "sdfqdfsqkj qsldkj qkjf mqsdjkf mfkjs sfk fsdqkj fskjh fdlkjfs lkj slkjh sdl";
+        public string description3 { get; set; } = "sdfqdfsqkj qsldkj qkjf mqsdjkf mfkjs sfk fsdqkj fskjh fdlkjfs lkj slkjh sdl";
     }
 }

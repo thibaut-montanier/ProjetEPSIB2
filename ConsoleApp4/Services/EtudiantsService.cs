@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ConsoleApp4.Model;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -12,6 +13,7 @@ namespace ConsoleApp4.Services {
         /// Dépendance vers le service "DemandeALutilisateur"
         /// </summary>
         private DemandeALutilisateur _DemandeALutilisateur;
+        private MatieresService _MatieresService;
         private List<Etudiant> ListeEtudiants = new List<Etudiant>();
 
         /// <summary>
@@ -19,8 +21,9 @@ namespace ConsoleApp4.Services {
         /// Un objet de type DemandeALutilisateur lors de l'instanciation de l'objet
         /// </summary>
         /// <param name="demandeALutilisateur"></param>
-        public EtudiantsService(DemandeALutilisateur demandeALutilisateur) {
+        public EtudiantsService(DemandeALutilisateur demandeALutilisateur, MatieresService matieresService) {
             _DemandeALutilisateur = demandeALutilisateur;
+            _MatieresService = matieresService;
         }
 
 
@@ -57,7 +60,20 @@ namespace ConsoleApp4.Services {
 
 
             // Exercice : demander la liste des matières associé à l'étudiant
+            // 1. Demander la première matière (on s'arrête à 1)$
 
+            p.Matieres = new List<Matiere>();
+            while(true) {
+                Matiere m = _MatieresService.DemandeMatiere();
+                p.Matieres.Add(m);
+
+                
+                string saisie = _DemandeALutilisateur.DemandeString("voulez-vous continuer ?");
+                if (saisie == "Q")
+                    break;
+            }
+            
+            // Exercice : Demander d'autres matières à l'utilisateur
 
             // construction du message
             string message;

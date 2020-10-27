@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ConsoleApp4.Model;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -8,8 +9,11 @@ namespace ConsoleApp4.Services {
         private List<Matiere> lesMatieres = new List<Matiere>();
         private DemandeALutilisateur _demandeALUtilisateur;
 
-        public MatieresService(DemandeALutilisateur demandeALutilisateur) {
+        private SalleService _salleService;
+
+        public MatieresService(DemandeALutilisateur demandeALutilisateur, SalleService salleService) {
             this._demandeALUtilisateur = demandeALutilisateur;
+            this._salleService = salleService;
         }
 
         public Matiere CreerMatiere() {
@@ -18,6 +22,7 @@ namespace ConsoleApp4.Services {
             // renseigner les champs
             result.Code = _demandeALUtilisateur.DemandeString("Code de la matiere ?");
             result.Nom = _demandeALUtilisateur.DemandeString("Nom de la matière ?");
+            result.Salle = _salleService.DemandeSalle();
             // on ajoute la matière à la liste
             lesMatieres.Add(result);
             return result;
