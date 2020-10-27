@@ -11,7 +11,7 @@ namespace ConsoleApp4.Services {
     /// </summary>
     public class DemandeALutilisateur {
 
-        public  int DemandeEntier(string message) {
+        public  virtual int DemandeEntier(string message) {
             Console.WriteLine(message);
             string age;
             age = Console.ReadLine();
@@ -23,7 +23,7 @@ namespace ConsoleApp4.Services {
             return intValue;
         }
 
-        public string DemandeString(string message) {
+        public virtual string DemandeString(string message) {
             Console.WriteLine(message);
             string saisieUtilisateur= Console.ReadLine();
             while (string.IsNullOrEmpty(saisieUtilisateur)) {

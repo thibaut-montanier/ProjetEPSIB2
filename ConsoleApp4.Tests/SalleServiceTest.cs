@@ -1,5 +1,6 @@
 ﻿using ConsoleApp4.Model;
 using ConsoleApp4.Services;
+using ConsoleApp4.Tests.Mock;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
@@ -81,23 +82,12 @@ namespace ConsoleApp4.Tests {
             // créer message va lever une erreur (c'est normal)
             // il faut vous assurer que CreerMessage lève bien l'erreur
             try {
-                //int i = 1;
-                //int j = 0;
-                //i = 6;
-                //i = 7;
-
-                //i = 4 / j;
-               
                 string message = _sv.CreerMessage(); 
                Assert.Fail("Creer message aurait du planter");
             }catch (Exception e) {
                 e = null;
                 Assert.Pass();
             }
-
-            // on continue par ici
-            
-            
         }
 
         [Test]
@@ -105,7 +95,6 @@ namespace ConsoleApp4.Tests {
 
             try {
                 _sv.getByID(25);
-                string mavariable = "";
                 // normalement, getByID doit lever une erreur du type ItemNotFoundException
                 // la ligne suivante ne doit pas être exécutée, on doit rentrer dans le catch ci-après
                 Assert.Fail("le test aurait du planter");
@@ -119,5 +108,7 @@ namespace ConsoleApp4.Tests {
             //  ce code sera exécuté qu'une exception soit levée ou pas
 
         }
+
+        
     }
 }

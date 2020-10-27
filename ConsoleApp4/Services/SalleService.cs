@@ -74,14 +74,14 @@ namespace ConsoleApp4.Services {
         }
         public string CreerMessage() {
             string result = "";
-            // pourcours de ma liste de salle
-            //foreach (Salle s in _mesSalles) {
-            //    // ajout de la salle au message
-            //    result += "Batiment : " + s.Batiment + ", Numero : " + s.Numero + "\n";
-            //}
-            //if (result.EndsWith("\n")) {
-            //    result = result.Substring(0, result.Length - 1);
-            //}
+            //pourcours de ma liste de salle
+            foreach (Salle s in _mesSalles) {
+                // ajout de la salle au message
+                result += "Batiment : " + s.Batiment + ", Numero : " + s.Numero + "\n";
+            }
+            if (result.EndsWith("\n")) {
+                result = result.Substring(0, result.Length - 1);
+            }
             return result;
         }
 
