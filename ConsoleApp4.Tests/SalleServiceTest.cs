@@ -80,8 +80,44 @@ namespace ConsoleApp4.Tests {
             _sv.AddSalle(null);
             // créer message va lever une erreur (c'est normal)
             // il faut vous assurer que CreerMessage lève bien l'erreur
-            string message = _sv.CreerMessage();
+            try {
+                //int i = 1;
+                //int j = 0;
+                //i = 6;
+                //i = 7;
+
+                //i = 4 / j;
+               
+                string message = _sv.CreerMessage(); 
+               Assert.Fail("Creer message aurait du planter");
+            }catch (Exception e) {
+                e = null;
+                Assert.Pass();
+            }
+
+            // on continue par ici
             
+            
+        }
+
+        [Test]
+        public void GetByIDFailTest() {
+
+            try {
+                _sv.getByID(25);
+                string mavariable = "";
+                // normalement, getByID doit lever une erreur du type ItemNotFoundException
+                // la ligne suivante ne doit pas être exécutée, on doit rentrer dans le catch ci-après
+                Assert.Fail("le test aurait du planter");
+            }catch(ItemNotFoundException e) {
+                Assert.AreEqual(0,0);
+            }catch (NullReferenceException e) {
+
+            } finally {
+                //  ce code sera exécuté qu'une exception soit levée ou pas
+            }
+            //  ce code sera exécuté qu'une exception soit levée ou pas
+
         }
     }
 }

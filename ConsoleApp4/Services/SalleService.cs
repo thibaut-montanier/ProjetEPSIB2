@@ -67,19 +67,32 @@ namespace ConsoleApp4.Services {
         }
 
 
+
+        public Salle getByID(int SalleID) {
+            throw new ItemNotFoundException(SalleID);
+            return new Salle();
+        }
         public string CreerMessage() {
             string result = "";
             // pourcours de ma liste de salle
-            foreach(Salle s in _mesSalles) {
-                // ajout de la salle au message
-                result += "Batiment : " + s.Batiment + ", Numero : " + s.Numero + "\n";
-            }
-            if (result.EndsWith("\n")) {
-                result = result.Substring(0, result.Length - 1);
-            }
+            //foreach (Salle s in _mesSalles) {
+            //    // ajout de la salle au message
+            //    result += "Batiment : " + s.Batiment + ", Numero : " + s.Numero + "\n";
+            //}
+            //if (result.EndsWith("\n")) {
+            //    result = result.Substring(0, result.Length - 1);
+            //}
             return result;
         }
 
 
+    }
+
+    public class ItemNotFoundException : Exception {
+
+        public ItemNotFoundException(int id) {
+            this.IDRecherche = id;
+        }
+        public int IDRecherche { get; set; }
     }
 }
