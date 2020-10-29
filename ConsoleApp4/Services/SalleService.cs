@@ -1,6 +1,7 @@
 ﻿using ConsoleApp4.Model;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Runtime.CompilerServices;
 using System.Text;
 
@@ -21,42 +22,40 @@ namespace ConsoleApp4.Services {
             s = new Salle();
             s.Numero = _DemandeALutilisateur.DemandeString("Numéro de la salle?");
             s.Batiment = _DemandeALutilisateur.DemandeString("Batiment");
-            _mesSalles.Add(s);
+            getAll().Add(s);
             return s;
         }
 
+        /// <summary>
+        /// Charge les données depuis la base de données
+        /// </summary>
+        /// <returns></returns>
+        public List<Salle> getAll() {
+            if (_mesSalles == null) {
+                using (var sr = new StreamReader("monfichier.csv")) {
+                    var result = sr.ReadToEnd();
+                    var i = 0.1;
+                    // chargement des données dans ma liste
+
+                    _mesSalles = new List<Salle>();
+                    // parcours du fichier pour charger les données
+                    throw new NotImplementedException();
+                }
+            }
+            return _mesSalles;
+        }
 
         public void AddSalle(Salle s) {
-            _mesSalles.Add(s);
+            getAll().Add(s);
         }
-        public void CreateFakeData() {
-
-            Salle s = new Salle();
-            s.Numero = "212";
-            s.Batiment= "2";
-            _mesSalles.Add(s);
-
-            s = new Salle();
-            s.Numero = "213";
-            s.Batiment = "2";
-            _mesSalles.Add(s);
-
-            s = new Salle();
-            s.Numero = "214";
-            string num = s.Numero.Trim();
-            s.Batiment = "2";
-            _mesSalles.Add(s);
-
-            
-
-        }
+        
 
         public Salle DemandeSalle() {
 
             Salle result=null;
             while (result == null) {
                 string saisieUtilisateur = _DemandeALutilisateur.DemandeString("Numéro de la salle ?");
-                foreach(Salle s in this._mesSalles) {
+                foreach(Salle s in this.getAll()) {
                     if (s.Numero == saisieUtilisateur) {
                         result= s;
                     }
@@ -75,7 +74,7 @@ namespace ConsoleApp4.Services {
         public string CreerMessage() {
             string result = "";
             //pourcours de ma liste de salle
-            foreach (Salle s in _mesSalles) {
+            foreach (Salle s in getAll()) {
                 // ajout de la salle au message
                 result += "Batiment : " + s.Batiment + ", Numero : " + s.Numero + "\n";
             }

@@ -6,15 +6,12 @@ using System.Text;
 namespace ConsoleApp4.Services {
 
 
-
-
-
     /// <summary>
     /// Demande des information simples à l'utilisateur
     /// </summary>
     public class DemandeALutilisateur : IDemandeALutilisateur {
 
-        public  virtual int DemandeEntier(string message) {
+        public virtual int DemandeEntier(string message) {
             Console.WriteLine(message);
             string age;
             age = Console.ReadLine();

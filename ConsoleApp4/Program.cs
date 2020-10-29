@@ -30,12 +30,9 @@ namespace ConsoleApp4 {
                     // exercice : permettre de créer une matière
                     _MatieresService.CreerMatiere();
                 } else if (choixUtilisateur == "4") {
-                   
+
                 } else if (choixUtilisateur == "5") {
                     _SalleService.CreateSalle();
-                } else if (choixUtilisateur == "6") {
-                    _SalleService.CreateFakeData();
-                    // exercice : afficher la liste des matières
                 } else if (choixUtilisateur == "Q") {
                     break;
                 } else {

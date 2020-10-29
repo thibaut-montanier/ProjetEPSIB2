@@ -12,7 +12,7 @@ namespace ConsoleApp4.Services {
         /// <summary>
         /// Dépendance vers le service "DemandeALutilisateur"
         /// </summary>
-        private DemandeALutilisateur _DemandeALutilisateur;
+        private IDemandeALutilisateur _DemandeALutilisateur;
         private MatieresService _MatieresService;
         private List<Etudiant> ListeEtudiants = new List<Etudiant>();
 
@@ -21,7 +21,7 @@ namespace ConsoleApp4.Services {
         /// Un objet de type DemandeALutilisateur lors de l'instanciation de l'objet
         /// </summary>
         /// <param name="demandeALutilisateur"></param>
-        public EtudiantsService(DemandeALutilisateur demandeALutilisateur, MatieresService matieresService) {
+        public EtudiantsService(IDemandeALutilisateur demandeALutilisateur, MatieresService matieresService) {
             _DemandeALutilisateur = demandeALutilisateur;
             _MatieresService = matieresService;
         }

@@ -23,5 +23,13 @@ namespace ConsoleApp4.Tests {
             Assert.Greater(message.Length, 0);
 
         }
+
+
+        public void CreerMessageTest() {
+            var result = _sv.CreerMessage();
+
+            var expected = "toto";
+            Assert.AreEqual(expected, result);
+        }
     }
 }
