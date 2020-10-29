@@ -7,11 +7,11 @@ namespace ConsoleApp4.Services {
     public class MatieresService {
 
         private List<Matiere> lesMatieres = new List<Matiere>();
-        private DemandeALutilisateur _demandeALUtilisateur;
+        private IDemandeALutilisateur _demandeALUtilisateur;
 
         private SalleService _salleService;
 
-        public MatieresService(DemandeALutilisateur demandeALutilisateur, SalleService salleService) {
+        public MatieresService(IDemandeALutilisateur demandeALutilisateur, SalleService salleService) {
             this._demandeALUtilisateur = demandeALutilisateur;
             this._salleService = salleService;
         }

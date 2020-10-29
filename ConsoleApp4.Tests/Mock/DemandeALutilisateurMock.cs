@@ -4,9 +4,12 @@ using System.Collections.Generic;
 using System.Text;
 
 namespace ConsoleApp4.Tests.Mock {
-    public class DemandeALutilisateurMock : DemandeALutilisateur {
+    public class DemandeALutilisateurMock : IDemandeALutilisateur {
+        public int DemandeEntier(string message) {
+            return 1;
+        }
 
-        public override string DemandeString(string message) {
+        public string DemandeString(string message) {
             return "toto";
         }
     }

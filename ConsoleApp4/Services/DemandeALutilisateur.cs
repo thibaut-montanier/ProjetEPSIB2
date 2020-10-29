@@ -5,11 +5,19 @@ using System.Text;
 
 namespace ConsoleApp4.Services {
     
-    
+    public interface IDemandeALutilisateur {
+        public int DemandeEntier(string message);
+
+        public string DemandeString(string message);
+    }
+
+
+
+
     /// <summary>
     /// Demande des information simples à l'utilisateur
     /// </summary>
-    public class DemandeALutilisateur {
+    public class DemandeALutilisateur : IDemandeALutilisateur {
 
         public  virtual int DemandeEntier(string message) {
             Console.WriteLine(message);

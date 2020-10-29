@@ -11,7 +11,7 @@ namespace ConsoleApp4.Tests {
         SalleService _sv;
         [SetUp]
         public void SetUp() {
-            DemandeALutilisateur demSv = new DemandeALutilisateurMock();
+            IDemandeALutilisateur demSv = new DemandeALutilisateurMock();
             _sv = new SalleService(demSv);
         }
 

@@ -7,10 +7,10 @@ using System.Text;
 namespace ConsoleApp4.Services {
     public class SalleService {
 
-        private DemandeALutilisateur _DemandeALutilisateur;
+        private IDemandeALutilisateur _DemandeALutilisateur;
         private List<Salle> _mesSalles = new List<Salle>();
 
-        public SalleService(DemandeALutilisateur demandeALutilisateur) {
+        public SalleService(IDemandeALutilisateur demandeALutilisateur) {
             this._DemandeALutilisateur = demandeALutilisateur;
         }
 
