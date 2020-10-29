@@ -7,12 +7,12 @@ using System.Text;
 
 namespace ConsoleApp4.Tests {
     class SalleServiceMockTest {
-
+        #region
         SalleService _sv;
         [SetUp]
         public void SetUp() {
-            IDemandeALutilisateur demSv = new DemandeALutilisateurMock();
-            _sv = new SalleService(demSv);
+            DemandeALutilisateurMock demSv = new DemandeALutilisateurMock();
+            _sv = new SalleServiceMock(demSv);
         }
 
 
@@ -24,11 +24,11 @@ namespace ConsoleApp4.Tests {
 
         }
 
-
+        #endregion
+        [Test]
         public void CreerMessageTest() {
             var result = _sv.CreerMessage();
-
-            var expected = "toto";
+            var expected = "Batiment : B2, Numero : 202\nBatiment : B2, Numero : 203";
             Assert.AreEqual(expected, result);
         }
     }

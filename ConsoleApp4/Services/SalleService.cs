@@ -30,7 +30,7 @@ namespace ConsoleApp4.Services {
         /// Charge les données depuis la base de données
         /// </summary>
         /// <returns></returns>
-        public List<Salle> getAll() {
+        public virtual List<Salle> getAll() {
             if (_mesSalles == null) {
                 using (var sr = new StreamReader("monfichier.csv")) {
                     var result = sr.ReadToEnd();
