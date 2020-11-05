@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 
@@ -15,15 +16,19 @@ namespace ConsoleApp4.Services {
             this._DemandeALutilisateur = demandeALutilisateur;
         }
 
-
+        /// <summary>
+        /// Créer une nouvelle salle en demandant des informations à l'utilisateur
+        /// et ajoute la salle à la liste des salles disponibles
+        /// </summary>
+        /// <returns></returns>
         public Salle CreateSalle() {
-            
-            Salle s ;
+
+            Salle s;
             s = new Salle();
             s.Numero = _DemandeALutilisateur.DemandeString("Numéro de la salle?");
             s.Batiment = _DemandeALutilisateur.DemandeString("Batiment");
             getAll().Add(s);
-            return s;
+            return null;
         }
 
         /// <summary>
@@ -66,10 +71,26 @@ namespace ConsoleApp4.Services {
         }
 
 
+        /// <summary>
+        /// Cherche une salle par son numéro
+        /// La retourne si elle est trouvé
+        /// Lève une exception si elle n'est pas trouvée
+        /// </summary>
+        /// <param name="NumeroSalle"></param>
+        /// <returns></returns>
+        public Salle getByNumero(string NumeroSalle) {
 
-        public Salle getByID(int SalleID) {
-            throw new ItemNotFoundException(SalleID);
-            return new Salle();
+            if (string.IsNullOrEmpty(NumeroSalle)) {
+                throw new NumeroSalleInvalidException();
+            }
+            var result = getAll().Where(s => s.Numero == NumeroSalle).FirstOrDefault();
+
+            if (result != null)
+                return result;
+            else {
+                throw new ItemNotFoundException(NumeroSalle);
+            }
+
         }
         public string CreerMessage() {
             string result = "";
@@ -85,13 +106,20 @@ namespace ConsoleApp4.Services {
         }
 
 
+        public string CreerMessageSalle(Salle s) {
+           return  "Batiment : " + s.Batiment + ", Numero : " + s.Numero ;
+        }
+
+
     }
+
+
 
     public class ItemNotFoundException : Exception {
 
-        public ItemNotFoundException(int id) {
-            this.IDRecherche = id;
+        public ItemNotFoundException(string num) {
+            this.NumRecherche = num;
         }
-        public int IDRecherche { get; set; }
+        public string NumRecherche { get; set; }
     }
 }

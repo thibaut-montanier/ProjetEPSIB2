@@ -90,11 +90,14 @@ namespace ConsoleApp4.Tests {
             }
         }
 
+
+     
+
         [Test]
         public void GetByIDFailTest() {
 
             try {
-                _sv.getByID(25);
+                _sv.getByNumero("TOTO");
                 // normalement, getByID doit lever une erreur du type ItemNotFoundException
                 // la ligne suivante ne doit pas être exécutée, on doit rentrer dans le catch ci-après
                 Assert.Fail("le test aurait du planter");
