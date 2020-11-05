@@ -7,20 +7,25 @@ using System.Text;
 namespace ConsoleApp4.Tests.Mock {
     public class SalleServiceMock : SalleService {
 
-        public SalleServiceMock(IDemandeALutilisateur _demandeSrv) 
-            : base(_demandeSrv)
-        {
-               
+        public SalleServiceMock(IDemandeALutilisateur _demandeSrv)
+            : base(_demandeSrv) {
         }
-        private List<Salle> _mesSalles ;
+
+
+        private List<Salle> _mesSallesMocked ;
         public override List<Salle> getAll() {
-            if (_mesSalles == null) {
-                _mesSalles = new List<Salle>();
-                _mesSalles.Add(new Salle() { Batiment = "B2", Numero = "202" });
-                _mesSalles.Add(new Salle() { Batiment = "B2", Numero = "203" });
+            
+            if (_mesSallesMocked == null) {
+                _mesSallesMocked = new List<Salle>();
+                _mesSallesMocked.Add(new Salle() { Batiment = "B2", Numero = "202" });
+                _mesSallesMocked.Add(new Salle() { Batiment = "B2", Numero = "203" });
             }
 
-            return _mesSalles;
+            return _mesSallesMocked;
+        }
+
+        public override string CreerMessageSalle(Salle s) {
+            return base.CreerMessageSalle(s);
         }
     }
 }

@@ -39,19 +39,9 @@ namespace ConsoleApp4.Tests {
             Assert.AreEqual("toto", nouvelleSalle.Numero);
             Assert.AreEqual("toto", nouvelleSalle.Batiment);
         }
-
-
-        [Test]
-        public void CreateSalle2Test() {
-            /// on récupère l'état avant
-          
-            /// exécution de la méthode à tester
-            _sv.CreateSalle();
-
-            //analyse du résultat après
-            Assert.IsNotNull(_sv);
-        }
         #endregion
+
+
         [Test]
         public void CreerMessageSalleTest() {
             // préparation de données pour le test
@@ -78,15 +68,11 @@ namespace ConsoleApp4.Tests {
         [TestCase("203")]
         public void GetByIDNumero(string num) {
             var result =  _sv.getByNumero(num);
-
             Assert.IsNotNull(result);
             Assert.AreEqual(num, result.Numero);
-            
-
         }
         [Test]
         public void GetByIDNumeroFail() {
-
             try {
                 _sv.getByNumero("TOTO");
                 // normalement, getByID doit lever une erreur du type ItemNotFoundException
@@ -96,6 +82,19 @@ namespace ConsoleApp4.Tests {
                 Assert.AreEqual("TOTO", e.NumRecherche, "L'erreur est bien levée mais la valeur de numRecherche n'est pas bonne");
             }
             //  ce code sera exécuté qu'une exception soit levée ou pas
+        }
+
+        [Test]
+        public void GetByIDNumero_Fail_NumInvalide_Test() {
+            try {
+                _sv.getByNumero("");
+                // normalement, getByID doit lever une erreur du type ItemNotFoundException
+                // la ligne suivante ne doit pas être exécutée, on doit rentrer dans le catch ci-après
+                Assert.Fail("getByNumero aurait du lever une erreur de type 'NumeroSalleInvalidException'");
+            } catch (NumeroSalleInvalidException e) {
+                // l'exception doit être catchée, mais rien de plus.
+            } 
+
         }
     }
 }

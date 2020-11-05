@@ -9,9 +9,13 @@ using System.Text;
 namespace ConsoleApp4.Services {
     public class SalleService {
 
-        private IDemandeALutilisateur _DemandeALutilisateur;
         private List<Salle> _mesSalles = new List<Salle>();
 
+        // gestion des dépendances avec un service locator type Xamarin
+        // private IDemandeALutilisateur _DemandeALutilisateur = DependencyServices.get<IDemandeALutilisateur>();
+
+        // Injection de dépendances par le constructeur plus traditionnelle et plus efficace
+        private IDemandeALutilisateur _DemandeALutilisateur;
         public SalleService(IDemandeALutilisateur demandeALutilisateur) {
             this._DemandeALutilisateur = demandeALutilisateur;
         }
@@ -50,13 +54,12 @@ namespace ConsoleApp4.Services {
             return _mesSalles;
         }
 
-        public void AddSalle(Salle s) {
+        public virtual void AddSalle(Salle s) {
             getAll().Add(s);
         }
         
 
         public Salle DemandeSalle() {
-
             Salle result=null;
             while (result == null) {
                 string saisieUtilisateur = _DemandeALutilisateur.DemandeString("Numéro de la salle ?");
@@ -66,7 +69,6 @@ namespace ConsoleApp4.Services {
                     }
                 }
             }
-
             return result;
         }
 
@@ -97,7 +99,7 @@ namespace ConsoleApp4.Services {
             //pourcours de ma liste de salle
             foreach (Salle s in getAll()) {
                 // ajout de la salle au message
-                result += "Batiment : " + s.Batiment + ", Numero : " + s.Numero + "\n";
+                result += CreerMessageSalle(s) + "\n";
             }
             if (result.EndsWith("\n")) {
                 result = result.Substring(0, result.Length - 1);
@@ -106,7 +108,7 @@ namespace ConsoleApp4.Services {
         }
 
 
-        public string CreerMessageSalle(Salle s) {
+        public virtual string CreerMessageSalle(Salle s) {
            return  "Batiment : " + s.Batiment + ", Numero : " + s.Numero ;
         }
 
